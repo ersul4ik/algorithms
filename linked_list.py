@@ -9,6 +9,13 @@ class ListNode:
         else:
             self.next.insert(element)
 
+    @classmethod
+    def delete_node(cls, node):
+        if node is None:
+            return None
+        if node.next is None:
+            raise ValueError('The given node will not be the tail')
+        
 
 if __name__ == '__main__':
     linked_list = ListNode(4)
