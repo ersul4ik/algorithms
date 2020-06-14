@@ -17,16 +17,23 @@ class BinaryTree:
             else:
                 self.right.insert(element)
 
-    def print(self):
-        print(self.data)
-        if self.left:
-            self.left.print()
-        if self.right:
-            self.right.print()
-
 
 if __name__ == "__main__":
     tree = BinaryTree(22)
     tree.insert(3)
     tree.insert(14)
     tree.insert(33)
+
+    # Tests checking for the correct working of the insert method
+    assert tree.data == 22
+    assert tree.left.data == 3
+    assert tree.left.right.data == 14
+    assert tree.left.left == None
+    assert tree.right.data == 33
+    assert tree.right.left == None
+    assert tree.right.right == None
+
+
+
+
+
