@@ -17,6 +17,17 @@ class BinaryTree:
             else:
                 self.right.insert(element)
 
+    @classmethod
+    def invert(cls, node):
+        if node is None:
+            return None
+        
+        node.left, node.right = node.right, node.left
+        cls.invert(node.left)
+        cls.invert(node.right)
+
+        return node
+
 
 if __name__ == "__main__":
     tree = BinaryTree(22)
@@ -33,7 +44,11 @@ if __name__ == "__main__":
     assert tree.right.left == None
     assert tree.right.right == None
 
-
-
-
-
+    inverted_tree = BinaryTree.invert(tree)
+    assert inverted_tree.data == 22
+    assert inverted_tree.right.data == 3
+    assert inverted_tree.right.left.data == 14
+    assert inverted_tree.left.data == 33
+    assert inverted_tree.left.left == None
+    assert inverted_tree.left.right == None
+    
