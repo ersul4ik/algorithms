@@ -28,6 +28,19 @@ class BinaryTree:
 
         return node
 
+    @classmethod
+    def search(cls, root, val):
+        if root.data == val:
+            return root
+        if val > root.data:
+            if not root.right:
+                return []
+            return cls.search(root.right, val)
+        else:
+            if not root.left:
+                return []
+            return cls.search(root.left, val)
+
 
 if __name__ == "__main__":
     tree = BinaryTree(22)
@@ -43,6 +56,9 @@ if __name__ == "__main__":
     assert tree.right.data == 33
     assert tree.right.left == None
     assert tree.right.right == None
+
+    is_found = BinaryTree.search(tree, 14)
+    assert is_found == tree.left.right
 
     inverted_tree = BinaryTree.invert(tree)
     assert inverted_tree.data == 22
